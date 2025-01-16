@@ -1,95 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600&display=swap');
 
-/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styles */
 body {
-    background: linear-gradient(135deg, #1a1a1a, #333333);
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
     color: #e0e0e0;
     font-family: 'Cormorant', serif;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 1rem;
+    padding: 2rem;
+    line-height: 1.8;
     overflow-x: hidden;
-    background-size: 200% 200%;
     animation: gradientShift 15s ease infinite;
 }
 
-/* Container Styles */
 .container {
-    max-width: 900px;
+    max-width: 800px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Heading Styles */
 h1 {
     font-size: 2.5rem;
     text-align: center;
+    margin-bottom: 2rem;
     color: #f0f0f0;
     font-weight: 600;
-    letter-spacing: 1.5px;
-    margin-bottom: 2rem;
 }
 
-h1::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: #f0f0f0;
-    margin: 0.5rem auto 0;
+p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
 }
 
-/* Poem Section Styles */
-.poem {
-    display: flex;
-    flex-direction: column;
-    gap: 1.8rem;
-    font-size: 1.25rem;
-    line-height: 1.8;
+p:last-child {
+    margin-bottom: 0;
 }
 
-.verse {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.line {
-    text-indent: 1.5rem;
-    position: relative;
-}
-
-.line:hover {
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-    transition: all 0.3s ease;
-}
-
-/* Responsive Typography */
 @media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
     h1 {
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
 
-    .poem {
-        font-size: 1.1rem;
-    }
-
-    .line {
-        text-indent: 1rem;
+    p {
+        font-size: 1rem;
     }
 }
 
@@ -98,19 +78,7 @@ h1::after {
         font-size: 1.8rem;
     }
 
-    .poem {
-        font-size: 1rem;
-        gap: 1.5rem;
+    p {
+        font-size: 0.9rem;
     }
-
-    .line {
-        text-indent: 0.8rem;
-    }
-}
-
-/* Background Gradient Animation */
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
