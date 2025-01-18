@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Were My Last Friend</title>
+    <link rel="stylesheet" href="/PiecesofMe/styles.css">
+</head>
+<body>
+    <button class="theme-toggle" aria-label="Toggle theme">🌗</button>
+    <div class="container">
+        <h1>The Edge of Us</h1>
+        <div class="poem"></div>
+    </div>
+
+    <script>
+        const poem = `You're not what they call normal,
+yet you do have moments of lunacy every now and then.
+
+I'm not what they call sober,
+for being drunk on you is the most beautiful intoxication.
+
+We're not what they call a couple,
+since we can't stand the weight of unnecessary labeling.
+
+But still, I wish we could unlearn
+the habit of taking each other for granted.
+
+I know our battles are never-ending, ever-consuming,
+yet do I stop wishing for the moon in the omniscient dark?
+
+Do I stop hoping for a fleeting moment of serendipity,
+for just a spoonful of romance?
+
+You're more than what you choose to reveal,
+and it only pushes you closer to the edge.
+
+I'm more than what I choose to hide,
+and it only drives me one step nearer to the cliff.
+
+We are more than what words allow us to express,
+though sometimes they tear us apart.
+
+But I pretend to believe everything happens for a reason,
+even as I know that sometimes no reason can excuse the pain.
+
+Still, do I stop dreaming of sunrise warmth in your embrace?
+Do I stop writing each time my heart bleeds for you, for us?`;
+
+        const poemContainer = document.querySelector('.poem');
+        const stanzas = poem.split('\n\n');
+        
+        stanzas.forEach((stanza, index) => {
+            const div = document.createElement('div');
+            div.className = 'stanza';
+            div.textContent = stanza;
+            div.style.animation = `stanzaFadeIn 0.8s ${index * 0.3}s forwards`;
+            poemContainer.appendChild(div);
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function setTheme(isDark) {
+            if (isDark) {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '🌖';
+            } else {
+                document.body.removeAttribute('data-theme');
+                themeToggle.textContent = '🌗';
+            }
+        }
+
+        // Initialize theme based on system preference
+        setTheme(prefersDarkScheme.matches);
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+
+        // Listen for system theme changes
+        prefersDarkScheme.addEventListener('change', (e) => {
+            setTheme(e.matches);
+        });
+    </script>
+</body>
+</html>

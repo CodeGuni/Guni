@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap');
+
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #f4f4f4;
+    --accent-color: #636363;
+    --hover-color: #8a8a8a;
+    --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeIn 1s forwards;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+.poetry-grid {
+    display: grid;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.poem-link {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 2rem;
+    border: 1px solid transparent;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.poem-link:nth-child(odd) {
+    text-align: left;
+    animation: fadeInLeft 0.8s forwards;
+}
+
+.poem-link:nth-child(even) {
+    text-align: right;
+    animation: fadeInRight 0.8s forwards;
+}
+
+.poem-link:hover {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-5px);
+}
+
+.poem-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.poem-title::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-color);
+    transition: var(--transition);
+}
+
+.poem-link:hover .poem-title::after {
+    width: 100%;
+}
+
+.poem-date {
+    font-size: 1rem;
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .poem-title {
+        font-size: 1.8rem;
+    }
+
+    .poem-link {
+        text-align: center !important;
+    }
+}
