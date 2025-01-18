@@ -9,7 +9,7 @@
 <body>
     <button class="theme-toggle" aria-label="Toggle theme">🌗</button>
     <div class="container">
-        <h1>You Were My Last Friend</h1>
+        <h1>My Last Friend</h1>
         <div class="poem"></div>
     </div>
 
@@ -30,11 +30,11 @@ You said I gave you stress, that I brought you pressure,
 When all I wanted was to hold our connection together.
 
 You didn't like the words I poured from my heart,
-The big messages, the note—a vulnerable start.
+The big messages, the note a vulnerable start.
 You said you wanted peace, to avoid the strain,
 And I wonder if you feared hurting me again.
 
-Maybe this wasn't friendship—maybe I blurred the lines,
+Maybe this wasn't friendship maybe I blurred the lines,
 Maybe I mistook your kindness for signs.
 You were my last friend, the one I held tight,
 But I see now, I was chasing fading light.
@@ -50,9 +50,12 @@ It's not silence after you've poured out your soul,
 Or losing yourself just to feel whole.
 
 You were my last friend, and I always cared,
-But now I choose myself—it's only fair.
-I'll carry the lessons, but leave the pain,
-And start to rebuild myself again.`;
+But now I choose myself — it's only fair.
+
+I’ll keep the lessons, but I’m done with the pain.
+I’ll let go of you, and rebuild myself again.
+And this time, I’ll make sure
+Not to lose myself holding on to someone unsure.`;
 
         const poemContainer = document.querySelector('.poem');
         const stanzas = poem.split('\n\n');
@@ -61,6 +64,10 @@ And start to rebuild myself again.`;
             const div = document.createElement('div');
             div.className = 'stanza';
             div.textContent = stanza;
+            div.innerHTML = stanza.replace(
+        'You were my last friend, and I always cared,\nBut now I choose myself — it\'s only fair.',
+        `<strong>You were my last friend, and I always cared,<br>But now I choose myself—it's only fair.</strong>`
+    );
             div.style.animation = `stanzaFadeIn 0.8s ${index * 0.3}s forwards`;
             poemContainer.appendChild(div);
         });

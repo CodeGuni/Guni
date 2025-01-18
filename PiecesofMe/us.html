@@ -54,7 +54,11 @@ Do I stop writing each time my heart bleeds for you, for us?`;
             const div = document.createElement('div');
             div.className = 'stanza';
             div.textContent = stanza;
-            div.style.animation = `stanzaFadeIn 0.8s ${index * 0.3}s forwards`;
+            div.innerHTML = stanza.replace(
+                'Do I stop writing each time my heart bleeds for you, for us?',
+        `<strong>Do I stop writing each time my heart bleeds for you, for us?</strong>`
+    );
+          div.style.animation = `stanzaFadeIn 0.8s ${index * 0.3}s forwards`;
             poemContainer.appendChild(div);
         });
 
