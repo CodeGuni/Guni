@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online - Pickup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Guni's</h1>
+        <p>Your orders ready for pickup!</p>
+    </header>
+
+    <main>
+        <section id="orderForm">
+            <h2>Place Your Pickup Order</h2>
+            <form id="customerDetails">
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    <span class="error" id="nameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="123-456-7890" required>
+                    <span class="error" id="phoneError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickupDate">Pickup Date:</label>
+                    <input type="date" id="pickupDate" name="pickupDate" required>
+                    <span class="error" id="dateError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickupTime">Pickup Time:</label>
+                    <input type="time" id="pickupTime" name="pickupTime" required>
+                    <span class="error" id="timeError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialInstructions">Special Instructions:</label>
+                    <textarea id="specialInstructions" name="specialInstructions" rows="4"></textarea>
+                </div>
+
+                <div id="deliveryEstimate" class="delivery-estimate"></div>
+                <div id="countdown" class="countdown"></div>
+
+                <button type="submit">Place Order</button>
+            </form>
+
+            <div id="orderSummary" class="order-summary"></div>
+            <small>&copy; Gunpreet Singh 9022194 2025</small>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
