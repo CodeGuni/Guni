@@ -8,6 +8,9 @@
     2.Validation Enhancements: Preventing past date/time selections with clear alerts.
     3.Favicon Integration: Added a favicon for branding.
     4.Polished Order Summary: Clean and styled summary with conditional special instructions.
+    
+    
+    5. Published on my website for testing and demonstration:    https://guni.ca/Advjs/index.html
 
 */
 
