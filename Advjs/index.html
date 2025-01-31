@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guni's Online - Pickup</title>
     <link rel="stylesheet" href="/Advjs/styles.css">
-    <!-- Added favicon -->
     <link rel="icon" href="/Advjs/favicon.png">
 </head>
 <body>
@@ -29,6 +28,20 @@
 
                 <label for="pickupTime">Time:</label>
                 <input type="time" id="pickupTime" name="pickupTime" required>
+                <label for="sideDish">Side Dish:</label>
+                <select id="sideDish" name="sideDish">
+                    <option value="">Select a side dish (optional)</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Naan">Naan</option>
+                    <option value="Fries">Fries</option>
+                </select>
+                <!-- Added Drinks -->
+                <select id="Drinks" name="Drinks">
+                    <option value="">Select a drink (optional)</option>
+                    <option value="Coke">Coca-Cola</option>
+                    <option value="Ginger">Ginger-Ale</option>
+                    <option value="Energy">Energy-Drink</option>
+                </select>
 
                 <label for="specialInstructions">Special Instructions:</label>
                 <textarea id="specialInstructions" name="specialInstructions"></textarea>
