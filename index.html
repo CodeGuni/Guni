@@ -3,10 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="icons8-g-100.png" type="image/x-icon">
-    <title>Gunpreet Singh</title>
-    <script>
-         window.location.href = "https://www.linkedin.com/in/guni/";
-    </script>
+    <meta name="description" content="Welcome to my personal portfolio website. I'm a web development student at Conestoga College, passionate about creating innovative digital experiences.">
+    <meta name="keywords" content="web development, student portfolio, Conestoga College, personal website">
+    <title>Gunpreet Singh - Web Development Student</title>
+    <link rel="stylesheet" href="assets/CSS/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+<body>
+    <header>
+        <h1>Gunpreet Singh</h1>
+        <nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="interests.html">Interests</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="home-content">
+        <div class="profile-image">
+            <picture>
+                <source srcset="/assets/images/gunpreet.png" media="(min-width: 800px)">
+                <img src="/assets/images/gunpreet.png" alt="Your Name - Web Development Student at Conestoga College">
+            </picture>
+        </div>
+        <div class="profile-section">
+            <div class="intro-text">
+                <p>Student at Conestoga College, combining creativity with technical expertise to build innovative digital experiences.</p>
+            </div>
+            <div class="contact-info">
+              <p>
+                <a href="mailto:hi@guni.ca" style="text-decoration: none; color: inherit;">
+                    <i class="fas fa-envelope"></i> hi@guni.ca
+                </a>
+            </p>
+            
+                <div class="social-links">
+                    <a href="https://github.com/CodeGuni" target="_blank" title="GitHub Profile">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <br>
+                    <a href="https://www.linkedin.com/in/guni/" target="_blank" title="LinkedIn Profile">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+      <p>Student ID: 9022194 | Email: gsingh2194@conestogac.on.ca | Work email: <a href="mailto:hi@guni.ca">hi@guni.ca</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
