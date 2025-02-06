@@ -180,6 +180,9 @@ small {
     color: #718096;
     font-size: 0.875rem;
 }
+strong {
+    font-weight: bold !important;
+  }
 #welcomeMsg {
     display: none; 
     font-weight: bold;
