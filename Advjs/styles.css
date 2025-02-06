@@ -181,21 +181,21 @@ small {
     font-size: 0.875rem;
 }
 #welcomeMsg {
+    display: none; 
     font-weight: bold;
     font-size: 1.2em;
-    color: #2c3e50; /* Dark blue-gray */
-    background-color: #f4f4f4; /* Light gray background */
+    color: #2c3e50;
+    background-color: #f4f4f4;
     padding: 8px 12px;
     border-radius: 6px;
-    display: inline-block;
     margin-top: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-   
-    /* Animation */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 1s ease-out, glow 2s infinite alternate ease-in-out;
 }
 
-/* Fade-in effect when the message appears */
+#welcomeMsg.visible {
+    display: inline-block; 
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -206,14 +206,14 @@ small {
         transform: translateY(0);
     }
 }
+}
 
-/* Subtle glowing effect */
 @keyframes glow {
     from {
-        box-shadow: 0 4px 10px rgba(44, 62, 80, 0.4); /* Darker shadow */
+        box-shadow: 0 4px 10px rgba(44, 62, 80, 0.4);
     }
     to {
-        box-shadow: 0 4px 20px rgba(44, 62, 80, 0.6); /* Slightly glowing effect */
+        box-shadow: 0 4px 20px rgba(44, 62, 80, 0.6);
     }
 }
 
