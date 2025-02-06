@@ -182,6 +182,7 @@ small {
 }
 strong {
     font-weight: bold !important;
+    
   }
 #welcomeMsg {
     display: none; 
