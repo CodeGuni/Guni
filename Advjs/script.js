@@ -112,12 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
         orderDetails[2] + "T" + orderDetails[3] + ":00"
       );
 
-      // Get current date and time
       let now = new Date();
       let currentTime = now.getHours() * 60 + now.getMinutes();
       let selectedTime = hour * 60 + minute;
 
-      // Compare dates without time
       let selectedDate = new Date(orderDetails[2]);
       let currentDate = new Date(now.toISOString().split("T")[0]);
 
@@ -128,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedDate.getTime() === currentDate.getTime() &&
         selectedTime < currentTime
       ) {
-        // Changed <= to <
         alert("Please select current time or a future time.");
         return;
       }
@@ -142,13 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
         hour12: true,
       });
 
-      // 5) Create a copy of the orderDetails array to use for the remainder of the assignment
-
+      // 5) Copy of the orderDetails array to use 
       const orderDetailsCopy = [...orderDetails];
+
       // 6) Using .splice() to replace multiple values in one statement:
-      // a) Replace phone number (index 1) with formatted phone number,
-      // b) Replace pickup date (index 2) with the formatted completion date,
-      // c) Replace pickup time (index 3) with the formatted ready time.
       let formattedDate = readyTime.toLocaleDateString("en-CA");
       orderDetailsCopy.splice(1, 3, nicePhone, formattedDate, niceTime);
 
