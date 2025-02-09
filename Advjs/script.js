@@ -1,79 +1,58 @@
-// 3. Added page load event listener  4.// moved all the existing code inside the event listener
 document.addEventListener("DOMContentLoaded", function () {
-  // 5. Capture all form inputs using querySelectorAll
   const formInputs = document.querySelectorAll(
     "#customerDetails input, #customerDetails select, #customerDetails textarea"
   );
 
-  // 7. Add change event listeners for local and session storage
   formInputs.forEach((input) => {
     input.addEventListener("change", function () {
       localStorage.setItem(input.id, input.value);
       sessionStorage.setItem(input.id, input.value);
     });
 
-    // 6. Load stored values if they exist
     const storedValue = localStorage.getItem(input.id);
     if (storedValue) {
       input.value = storedValue;
     }
   });
 
-  // 9. Check for welcome back message  only display when it exists
   const welcomeMsg = document.getElementById("welcomeMsg");
   if (welcomeMsg) {
-    if (sessionStorage.getItem("fullName") && sessionStorage.getItem("fullName").trim() !== "") {
-      welcomeMsg.textContent = `Welcome back, ${sessionStorage.getItem("fullName")} !`;
+    if (
+      sessionStorage.getItem("fullName") &&
+      sessionStorage.getItem("fullName").trim() !== ""
+    ) {
+      welcomeMsg.textContent = `Welcome back, ${sessionStorage.getItem(
+        "fullName"
+      )}!`;
       welcomeMsg.style.display = "inline-block";
     } else {
       welcomeMsg.style.display = "none";
     }
   }
+
   let timer;
 
   document
     .querySelector("#customerDetails")
     .addEventListener("submit", function (event) {
       event.preventDefault();
+      // 3) Using .push() to store the form input values into the orderDetails array
+      const orderDetails = [];
+      orderDetails.push(
+        document.querySelector("#fullName").value,
+        document.querySelector("#phoneNumber").value,
+        document.querySelector("#pickupDate").value,
+        document.querySelector("#pickupTime").value,
+        document.querySelector("#sideDish").value,
+        document.querySelector("#Drinks").value,
+        document.querySelector("#specialInstructions").value
+      );
 
-      let name = document.querySelector("#fullName").value;
-      let phone = document.querySelector("#phoneNumber").value;
-      let date = document.querySelector("#pickupDate").value;
-      let time = document.querySelector("#pickupTime").value;
-      let instructions = document.querySelector("#specialInstructions").value;
-      let sideDish = document.querySelector("#sideDish").value;
-      let drinks = document.querySelector("#Drinks").value;
-
-      if (sideDish) {
-        switch (sideDish) {
-          case "Rice":
-            alert("Great choice!");
-            break;
-          case "Naan":
-            alert("Excellent!");
-            break;
-          case "Fries":
-            alert("Nice pick!");
-            break;
-        }
-      }
-      if (drinks) {
-        switch (drinks) {
-          case "Coke":
-            alert("Ice-cold Cola!");
-            break;
-          case "Ginger":
-            alert("Ginger-Ale is perfect for digestion.");
-            break;
-          case "Energy":
-            alert("We got you covered!");
-            break;
-        }
-      }
+      // 4b) Special instructions try/catch to check for inappropriate language in orderDetails[6]
 
       let isBadwords = false;
       try {
-        if (instructions.toLowerCase().includes("badword")) {
+        if (orderDetails[6].toLowerCase().includes("badword")) {
           isBadwords = true;
           throw new Error("Please avoid using inappropriate language.");
         }
@@ -81,36 +60,81 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(error.message);
         return;
       }
+      // 4a) Side dish switch statement using array value at index 4 (Side Dish)
+      if (orderDetails[4]) {
+        switch (orderDetails[4]) {
+          case "Rice":
+            alert(`${orderDetails[4]} is a staple.`);
+            break;
+          case "Naan":
+            alert(`${orderDetails[4]} is a popular choice.`);
+            break;
+          case "Fries":
+            alert(`${orderDetails[4]} are a classic.`);
+            break;
+        }
+      }
+      // 4a) Drink section switch statement using array value at index 5 (Drink Selectoin)
+      if (orderDetails[5]) {
+        switch (orderDetails[5]) {
+          case "Coke":
+            alert(`${orderDetails[5]} is a classic.`);
+            break;
+          case "Ginger-Ale":
+            alert(`${orderDetails[5]} is a great choice.`);
+            break;
+          case "Energy-Drink":
+            alert(`${orderDetails[5]} is a popular choice.`);
+            break;
+        }
+      }
+      // 4c) Phone validation using the value at index 1 (Phone Number)
 
       const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-      if (!phoneRegex.test(phone)) {
+      if (!phoneRegex.test(orderDetails[1])) {
         alert("Phone number is not valid! Please use format: (123) 456-7890");
         return;
       }
+      // 4f) Formatting phone number using regex replacement (index 1: Phone Number)
 
-      let nicePhone = phone.replace(phoneRegex, "($1) $2-$3");
+      let nicePhone = orderDetails[1].replace(phoneRegex, "($1) $2-$3");
 
-      let prepTime = 30; // base time is 30 minutes
-      let hour = parseInt(time.split(":")[0]);
+      let prepTime = 1;
 
-      prepTime = hour >= 17 ? prepTime + 15 : prepTime;
+      // 4d) Capturing the hours and minutes for the pickup time (index 3) and using .map() for conversion
+      const [hour, minute] = orderDetails[3]
+        .split(":")
+        .map((num) => parseInt(num));
+      prepTime = hour >= 23 ? prepTime + 15 : prepTime;
 
-      // Create date object for pickup time
-      let pickupTime = new Date(date + " " + time);
+      // 4e) Create a Date object for pickup time using pickup date (index 2) and pickup time (index 3)
+      let pickupTime = new Date(
+        orderDetails[2] + "T" + orderDetails[3] + ":00"
+      );
 
-      // Validate pickup time
+      // Get current date and time
       let now = new Date();
-      now.setSeconds(0, 0);
-      pickupTime.setSeconds(0, 0);
+      let currentTime = now.getHours() * 60 + now.getMinutes();
+      let selectedTime = hour * 60 + minute;
 
-      if (pickupTime < now) {
-        alert(
-          "Cannot select a past date and time. Please select current or future time."
-        );
+      // Compare dates without time
+      let selectedDate = new Date(orderDetails[2]);
+      let currentDate = new Date(now.toISOString().split("T")[0]);
+
+      if (selectedDate < currentDate) {
+        alert("Cannot select a past date.");
+        return;
+      } else if (
+        selectedDate.getTime() === currentDate.getTime() &&
+        selectedTime < currentTime
+      ) {
+        // Changed <= to <
+        alert("Please select current time or a future time.");
         return;
       }
 
       let readyTime = new Date(pickupTime.getTime() + prepTime * 60 * 1000);
+      // Format the ready time into a locale time string (5:45 PM)
 
       let niceTime = readyTime.toLocaleTimeString("en-US", {
         hour: "numeric",
@@ -118,55 +142,63 @@ document.addEventListener("DOMContentLoaded", function () {
         hour12: true,
       });
 
+      // 5) Create a copy of the orderDetails array to use for the remainder of the assignment
+
+      const orderDetailsCopy = [...orderDetails];
+      // 6) Using .splice() to replace multiple values in one statement:
+      // a) Replace phone number (index 1) with formatted phone number,
+      // b) Replace pickup date (index 2) with the formatted completion date,
+      // c) Replace pickup time (index 3) with the formatted ready time.
+      let formattedDate = readyTime.toLocaleDateString("en-CA");
+      orderDetailsCopy.splice(1, 3, nicePhone, formattedDate, niceTime);
+
+      // Update the welcome message with the customer's name and store it in sessionStorage
+
       const welcomeMsg = document.getElementById("welcomeMsg");
-      if (welcomeMsg && name.trim() !== "") {
-        welcomeMsg.textContent = `Hold your hunger, ${name}! Your order is cooking... literally. 🍳`;
+      if (welcomeMsg && orderDetails[0].trim() !== "") {
+        welcomeMsg.textContent = `Hold your hunger, ${orderDetails[0]}! Your order is cooking... literally. 🍳`;
         welcomeMsg.style.display = "inline-block";
-        
-        // Update session storage with the new name
-        sessionStorage.setItem("fullName", name);
+        sessionStorage.setItem("fullName", orderDetails[0]);
       } else if (welcomeMsg) {
         welcomeMsg.style.display = "none";
       }
+      // Persist the current values in localStorage again
 
-      // display order summary if no bad words were detected
       if (!isBadwords) {
-        // Store all input values in Local Storage
         formInputs.forEach((input) => {
           localStorage.setItem(input.id, input.value);
         });
+        // 7) Use a .forEach() loop over the copied array to output the order summary in a table format
 
-        let summary = `
-                  <div class="order-summary">
-                      <h2>Order Summary</h2>
-                      <p>Name: ${name}</p>
-                      <p>Phone: ${nicePhone}</p>
-                      <p>Pickup Date: ${date}</p>
-                      <p>Ready By: ${niceTime}</p>
-              `;
+        let summary = '<div class="order-summary"><h2>Order Summary</h2>';
+        summary += "<table><tr><th>Field</th><th>Value</th></tr>";
 
-        // Only add side dish to summary if one was selected
-        if (sideDish) {
-          summary += `<p>Side Dish: ${sideDish}</p>`;
-        }
+        const labels = [
+          "Name",
+          "Phone",
+          "Pickup Date",
+          "Ready By",
+          "Side Dish",
+          "Drink Selection",
+          "Special Instructions",
+        ];
 
-        // Only add drink to summary if one was selected
-        if (drinks) {
-          summary += `<p>Drink Selection: ${drinks}</p>`;
-        }
+        orderDetailsCopy.forEach((detail, index) => {
+          if (detail !== "") {
+            if (labels[index] === "Special Instructions") {
+              summary += `<tr><td>${labels[index]} :</td><td><strong>${detail}</strong></td></tr>`;
+            } else {
+              summary += `<tr><td>${labels[index]} :</td><td>${detail}</td></tr>`;
+            }
+          }
+        });
 
-        if (instructions !== "") {
-          summary += `<p><strong>Special Instructions:</strong> ${instructions}</p>`;
-        }
-
-        summary += `</div>
-                  <div id="timer" class="timer active">
-                      Time until ready: Calculating...
-                  </div>`;
+        summary += `</table></div>
+              <div id="timer" class="timer active">
+                  Time until ready: Calculating...
+              </div>`;
 
         document.querySelector("#orderForm").innerHTML = summary;
-
-        // Start the countdown
         startCountdown(readyTime);
       }
     });
@@ -187,6 +219,11 @@ function startCountdown(endTime) {
       timerDiv.classList.remove("active");
       timerDiv.classList.add("expired");
       clearInterval(timer);
+      // Play a sound when the order is ready
+      let sound = new Audio("/Advjs/ding-sound-effect_2.mp3");
+      sound
+        .play()
+        .catch((error) => console.error("Error playing sound:", error));
       return;
     }
 

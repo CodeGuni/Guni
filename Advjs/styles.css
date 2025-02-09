@@ -221,6 +221,35 @@ strong {
     }
 }
 
+.order-summary table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .order-summary table tr:first-child {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+  }
+  
+  .order-summary table th,
+  .order-summary table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .order-summary table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .order-summary table tr:nth-child(even) {
+    background-color: #f7fafc;
+  }
+  
+  .order-summary table tr:hover {
+    background-color: #edf2f7;
+  }
+  
 
 @media screen and (max-width: 640px) {
     header h1 {
@@ -235,6 +264,11 @@ strong {
         font-size: 1.5rem;
         padding: 1rem;
     }
+    .order-summary table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap; 
+      }
 }
 
 @keyframes pulse {
