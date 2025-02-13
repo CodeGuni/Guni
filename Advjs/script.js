@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const [hour, minute] = orderDetails[3]
         .split(":")
         .map((num) => parseInt(num));
-      prepTime = hour >= 23 ? prepTime + 1 : prepTime;
+      prepTime = hour >= 23 ? prepTime + 0 : prepTime;
 
       // 4e) Create a Date object for pickup time using pickup date (index 2) and pickup time (index 3)
       let pickupTime = new Date(
@@ -116,7 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
       let currentTime = now.getHours() * 60 + now.getMinutes();
       let selectedTime = hour * 60 + minute;
 
-      let selectedDate = new Date(orderDetails[2]);
+      const [year, month, day] = orderDetails[2].split("-").map(Number);
+      let selectedDate = new Date(year, month - 1, day);
+
       let currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
       if (selectedDate < currentDate) {
