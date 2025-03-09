@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=https://www.linkedin.com/in/guni/">
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            window.location.href = "https://www.linkedin.com/in/guni/";
+            var currentPath = window.location.pathname;
+
+            // Redirect logic
+            if (currentPath === "/") {
+                // Redirect to LinkedIn if it's the home page
+                window.location.href = "https://www.linkedin.com/in/guni/";
+            } else if (currentPath === "/2fsas3") {
+                // Redirect to a level 2 full stack assignment 3
+                window.location.href = "https://sem2-fullstack-assignment3.onrender.com/"; 
+            }
+            
         });
     </script>
 </head>
