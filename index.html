@@ -3,24 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var currentPath = window.location.pathname;
-
-            // Redirect logic
-            if (currentPath === "/") {
-                // Redirect to LinkedIn if it's the home page
-                window.location.href = "https://www.linkedin.com/in/guni/";
-            } else if (currentPath === "/2fsas3") {
-                // Redirect to a level 2 full stack assignment 3
-                window.location.href = "https://sem2-fullstack-assignment3.onrender.com/"; 
-            }
-            
-        });
-    </script>
+    <title>Guni's Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #00f; }
+            to { text-shadow: 0 0 20px #0ff, 0 0 30px #00f, 0 0 40px #00f; }
+        }
+        .contact {
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+        .contact a {
+            color: #0ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact a:hover {
+            color: #fff;
+        }
+        .folder {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .folder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .folder-title {
+            font-size: 1.5em;
+            color: #0ff;
+        }
+        .subjects {
+            display: none;
+            margin-top: 20px;
+        }
+        .subject-btn {
+            display: block;
+            background: #0ff;
+            color: #1a1a2e;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+        .subject-btn:hover {
+            transform: translateX(10px);
+            background: #fff;
+        }
+        .subject-links {
+            display: none;
+            padding-left: 20px;
+        }
+        .subject-links a {
+            color: #0ff;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            transition: color 0.3s ease;
+        }
+        .subject-links a:hover {
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-    <p>If you are not redirected, <a href="https://www.linkedin.com/in/guni/">click here</a>.</p>
+    <div class="container">
+        <h1>Guni's Portfolio</h1>
+        <div class="contact">
+            <p>Email: <a href="mailto:Info@guni.ca">Info@guni.ca</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/guni/" target="_blank">linkedin.com/in/guni</a></p>
+        </div>
+        <div class="folder" onclick="toggleSubjects()">
+            <div class="folder-title">Level 1</div>
+            <div class="subjects" id="subjects">
+                <a href="#" class="subject-btn" onclick="toggleLinks('adv-responsive')">Adv Responsive Site Design</a>
+                <div class="subject-links" id="adv-responsive">
+                    <a href="https://your-hosted-link1.com" target="_blank">Assignment 1</a>
+                    <a href="https://your-hosted-link2.com" target="_blank">Assignment 2</a>
+                </div>
+                <a href="#" class="subject-btn" onclick="toggleLinks('full-stack')">Full Stack Programming</a>
+                <div class="subject-links" id="full-stack">
+                    <a href="https://your-hosted-link3.com" target="_blank">Assignment 1</a>
+                    <a href="https://your-hosted-link4.com" target="_blank">Assignment 2</a>
+                </div>
+                <a href="#" class="subject-btn" onclick="toggleLinks('adv-js')">Adv JavaScript</a>
+                <div class="subject-links" id="adv-js">
+                    <a href="https://your-hosted-link5.com" target="_blank">Assignment 1</a>
+                    <a href="https://your-hosted-link6.com" target="_blank">Assignment 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubjects() {
+            const subjects = document.getElementById('subjects');
+            subjects.style.display = subjects.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleLinks(id) {
+            const links = document.getElementById(id);
+            links.style.display = links.style.display === 'block' ? 'none' : 'block';
+            event.preventDefault();
+        }
+    </script>
 </body>
 </html>
