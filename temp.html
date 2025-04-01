@@ -114,4 +114,17 @@
             <button class="button" onclick="alert('Button clicked!')">Click Me!</button>
         </div>
     </div>
+    <script>
+        // JavaScript code can go here if needed
+        document.querySelector('.button').addEventListener('click', function() {
+            alert('Button clicked!');
+        });
+
+        // Example of disabling the button after click
+        document.querySelector('.button').addEventListener('click', function() {
+            this.disabled = true;
+            this.innerText = 'Clicked!';
+        });     
+    </script>
+</body>
 </html>
