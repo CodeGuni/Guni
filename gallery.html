@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Nature Gallery: View stunning images of forests, waterfalls, and mountains.">
+    <meta name="keywords" content="nature gallery, landscape photos, eco-friendly">
+    <meta name="author" content="Group 1">
     <title>Explore Nature - Gallery</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
     <header>
         <h1>Explore Nature</h1>
-        <nav>
-            <ul>
+        <nav aria-label="Main navigation">
+            <button class="hamburger" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger-icon"></span>
+                <span class="sr-only">Toggle menu</span>
+            </button>
+            <ul id="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="gallery.html" class="active" aria-current="page">Gallery</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </nav>
@@ -21,14 +29,23 @@
         <section class="gallery">
             <h2>Gallery of Nature</h2>
             <div class="gallery-grid">
-                <img src="images/image1.jpg" alt="Forest path" class="responsive-img gallery-img">
-                <img src="images/image2.jpg" alt="Waterfall" class="responsive-img gallery-img">
-                <img src="images/image3.jpg" alt="Mountain peak" class="responsive-img gallery-img">
+                <img src="images/image1.jpg" alt="Forest path surrounded by tall trees" class="responsive-img gallery-img">
+                <img src="images/image2.jpg" alt="Waterfall cascading into a clear pool" class="responsive-img gallery-img">
+                <img src="images/image3.jpg" alt="Snow-capped mountain peak under a blue sky" class="responsive-img gallery-img">
             </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Explore Nature. All rights reserved.</p>
+        <p>© 2025 Explore Nature. All rights reserved.</p>
     </footer>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('#nav-menu');
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>

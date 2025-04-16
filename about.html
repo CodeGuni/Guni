@@ -3,65 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn more about my background, education, and personal interests.">
-    <title>About Me - Gunpreet Singh</title>
-    <link rel="stylesheet" href="assets/CSS/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="About Explore Nature: Learn about our mission to promote nature conservation.">
+    <meta name="keywords" content="nature conservation, about us, eco-friendly">
+    <meta name="author" content="Group 1">
+    <title>Explore Nature - About</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
     <header>
-        <h1> Gunpreet Singh</h1>
-        <nav>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links">
+        <h1>Explore Nature</h1>
+        <nav aria-label="Main navigation">
+            <button class="hamburger" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger-icon"></span>
+                <span class="sr-only">Toggle menu</span>
+            </button>
+            <ul id="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="interests.html">Interests</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html" class="active" aria-current="page">About</a></li>
             </ul>
         </nav>
     </header>
-
-    <main class="about-content">
-        <section class="about-text">
-            <h2>About Me</h2>
-            <p>Currently pursuing my PG diploma in Web Development at Conestoga College, I bring a unique perspective shaped by my diverse background and experiences.</p>
-            
-            <h3>Education</h3>
-            <p>PGC in Web Development - Conestoga College</p>
-            <p>Bachelor's in Computer Science - LPU</p>
-            <p>Diploma in Computer Science and engg. - LPU</p>
-            <h3>Background</h3>
-            <p>Originally from Ludhiana/india, I've always been fascinated by technology and its potential to transform lives.</p>
-            
-            <h3>Hobbies & Activities</h3>
-            <p>When I'm not coding, you can find me writing and playing games. I'm also an active participant in sports, i have played nationals and won many state level tournaments in swimming.</p>
-        </section>
-        
-        <section class="video-section">
-            <h3>My Notes</h3>
-            <div class="video-wrapper">
-                <div class="video-container">
-                    <iframe 
-                    src="https://www.youtube.com/embed/guq9KX3KZc0" 
-                    title="A glimpse of my thoughts" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-                
-                </div>
-            </div>
+    <main>
+        <section class="about">
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <img src="images/about.jpg" alt="Team hiking through a lush forest trail" class="responsive-img">
         </section>
     </main>
-
     <footer>
-        <p>Student ID: 9022194 | Email: gsingh2194@conestogac.on.ca | Work email: <a href="mailto:hi@guni.ca">hi@guni.ca</a></p>
+        <p>© 2025 Explore Nature. All rights reserved.</p>
     </footer>
-
-    <script src="/script.js"></script>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('#nav-menu');
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>

@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Nature: Discover stunning landscapes and learn about nature conservation.">
+    <meta name="keywords" content="nature, landscapes, conservation, eco-friendly">
+    <meta name="author" content="Group 1">
     <title>Explore Nature - Home</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
     <header>
         <h1>Explore Nature</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+        <nav aria-label="Main navigation">
+            <button class="hamburger" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger-icon"></span>
+                <span class="sr-only">Toggle menu</span>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
@@ -21,7 +29,7 @@
         <section class="hero">
             <h2>Welcome to Nature's Beauty</h2>
             <p>Discover the wonders of the natural world through stunning landscapes and vibrant ecosystems.</p>
-            <img src="images/hero.jpg" alt="Scenic mountain landscape" class="responsive-img">
+            <img src="images/hero.jpg" alt="Scenic mountain landscape with lush greenery" class="responsive-img">
         </section>
         <section class="content">
             <article>
@@ -39,7 +47,16 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Explore Nature. All rights reserved.</p>
+        <p>© 2025 Explore Nature. All rights reserved.</p>
     </footer>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('#nav-menu');
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
